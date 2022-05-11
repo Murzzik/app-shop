@@ -1,0 +1,12 @@
+# build
+dist
+
+# dependencies
+node_modules
+
+# system
+.DS_STORE
+
+# IDE
+.vscode
+.idea
