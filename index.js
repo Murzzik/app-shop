@@ -1,26 +1,59 @@
 const Koa = require('koa');
 const serve = require('koa-static');
+const Webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
+
+const webpackConfig = require('./webpack.config.dev');
 const config = require('./config');
 
-const app = new Koa();
+(async () => {
+    if (config.env.is_production) {
+        serveProductionServer();
+    } else {
+        await serveDevelopmentServer();
+    }
+})();
 
-app.use(serve('static'));
+function serveProductionServer () {
+    const app = new Koa();
 
-const server = app.listen(config.server.port);
+    app.use(serve('static'));
 
-app.on('error', err => {
-    console.error(err);
+    const server = app.listen(config.server.port);
 
-    process.exit(1);
-});
+    app.on('error', err => {
+        console.error(err);
 
-const shutdown = () => {
-    console.log('\nShutting down server');
-    server.close();
-    process.exit(0);
-}
+        process.exit(1);
+    });
 
-process.once('SIGTERM', shutdown);
-process.once('SIGINT', shutdown);
+    const shutdown = () => {
+        console.log('\nShutting down server');
+        server.close();
+        process.exit(0);
+    }
 
-console.info('Server listening to ' + config.server.port);
+    process.once('SIGTERM', shutdown);
+    process.once('SIGINT', shutdown);
+
+    console.info('Server listening to ' + config.server.port);
+};
+
+async function serveDevelopmentServer () {
+    const compiler = Webpack(webpackConfig);
+    const devServerOptions = { ...webpackConfig.devServer, open: true };
+    const server = new WebpackDevServer(devServerOptions, compiler);
+
+    await server.start();
+
+    const shutdown = async () => {
+        console.log('\nShutting down server');
+        await server.stop();
+        process.exit(0);
+    };
+
+    process.once('SIGTERM', shutdown);
+    process.once('SIGINT', shutdown);
+
+    console.info('Server listening to ' + devServerOptions.port);
+};
