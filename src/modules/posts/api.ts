@@ -1,5 +1,6 @@
-import setupClient from '../../api';
+import { createClient } from '../../api';
+import { Post } from './types';
 
-const api = setupClient('https://jsonplaceholder.typicode.com');
+const api = createClient('https://jsonplaceholder.typicode.com');
 
-export const getPosts = () => api.get('/posts');
+export const getPosts = () => api.get<Post[]>('/posts');

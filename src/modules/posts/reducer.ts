@@ -1,46 +1,29 @@
-import { Action } from 'redux';
-import { FETCH_POSTS } from './actions';
-
-interface ShopAction extends Action {
-    payload?: unknown;
-}
-
-export interface Post {
-    id: number;
-}
+import { AnyAction } from 'redux';
+import { LOAD_POSTS, LOAD_POSTS_ERROR } from './actions';
+import { Post } from './types';
 
 export interface PostsState {
-    loading: boolean;
     list: Post[];
+    error?: Error;
 }
 
 const initialState: PostsState = {
-    loading: true,
     list: [],
 };
 
-export const posts = (state = initialState, action: ShopAction) => {
-    if (action.type === FETCH_POSTS) {
-        return {
-            loading: false,
-            list: action.payload,
-        };
+export const posts = (state = initialState, action: AnyAction) => {
+    switch (action.type) {
+        case LOAD_POSTS:
+            return {
+                ...state,
+                list: action.payload,
+            };
+        case LOAD_POSTS_ERROR:
+            return {
+                ...state,
+                error: action.payload,
+            };
     }
 
     return state;
-
-    // switch (action.type) {
-    //     case FETCH_POSTS:
-    //         return {
-    //             list: [],
-    //             loading: true
-    //         };
-    //     case FETCH_POSTS_SUCCESS:
-    //         return {
-    //             loading: false,
-    //             list: action.payload,
-    //         };
-    // }
-    //
-    // return state;
 };
