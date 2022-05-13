@@ -4,10 +4,12 @@ import { posts, PostsState } from './modules/posts/reducer';
 
 const reducers = {
     posts,
+    albums,
 };
 
 export interface StoreState {
     posts: PostsState;
+
 }
 
 export const configureStore = () => {
