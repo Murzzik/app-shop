@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Posts } from './routes/posts';
 import { configureStore } from './store';
-import {Albums} from "./routes/albums";
+import { Albums } from "./routes/albums";
 
 const store = configureStore();
 
