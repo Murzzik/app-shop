@@ -1,6 +1,7 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { posts, PostsState } from './modules/posts/reducer';
+import {albums, AlbumsState} from "./modules/albums/albums-reducer";
 
 const reducers = {
     posts,
@@ -9,7 +10,7 @@ const reducers = {
 
 export interface StoreState {
     posts: PostsState;
-
+    albums: AlbumsState;
 }
 
 export const configureStore = () => {
