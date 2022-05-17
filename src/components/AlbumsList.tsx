@@ -1,6 +1,6 @@
 import React from 'react';
 import { Album } from '../modules/albums/types';
-import {Card, Col, Row} from 'antd';
+import { Card, Col, Row } from 'antd';
 
 interface AlbumsListProps {
     albumsList: Album[];
