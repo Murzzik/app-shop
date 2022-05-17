@@ -1,6 +1,7 @@
 const httpMethods = ['get', 'post', 'put', 'patch', 'delete'] as const;
 
-type JsonData = Record<string, unknown>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type JsonData = Record<string, any>;
 type HttpMethod = typeof httpMethods[number];
 type RequestMaker = <T>(url: string, body?: JsonData) => Promise<T>;
 
