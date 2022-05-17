@@ -4,8 +4,3 @@ export interface Post {
     body: string;
     userId: number;
 }
-export interface Album {
-    userId: number;
-    id: number;
-    title: string
-}

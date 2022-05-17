@@ -1,7 +1,7 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { posts, PostsState } from './modules/posts/reducer';
-import {albums, AlbumsState} from "./modules/albums/albums-reducer";
+import {albums, AlbumsState} from "./modules/albums/reducer";
 
 const reducers = {
     posts,

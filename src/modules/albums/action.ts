@@ -1,8 +1,8 @@
-import {Dispatch} from "redux";
-import {getAlbums} from "./albums-api";
+import { Dispatch } from 'redux';
+import { getAlbums } from './api';
 
 
-export const LOAD_ALBUMS = 'LOAD_ALBUMS';
+export const LOAD_ALBUMS = "LOAD_ALBUMS";
 export const LOAD_ALBUMS_ERROR = "LOAD_ALBUMS_ERROR"
 
 export const loadAlbums = () => async (dispatch: Dispatch) => {

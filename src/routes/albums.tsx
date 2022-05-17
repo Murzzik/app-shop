@@ -1,10 +1,10 @@
-import React, {useEffect} from 'react';
-import {StoreState} from "../store";
-import {bindActionCreators, Dispatch} from "redux";
-import {connect} from "react-redux";
-import { Album } from "../modules/posts/types";
-import {loadAlbums} from "../modules/albums/albums-action";
-import {AlbumsList} from "../components/AlbumsList";
+import React, { useEffect } from 'react';
+import { StoreState } from '../store';
+import { bindActionCreators, Dispatch } from 'redux';
+import { connect } from 'react-redux';
+import { Album } from '../modules/albums/types';
+import { loadAlbums } from '../modules/albums/action';
+import { AlbumsList } from '../components/AlbumsList';
 
 interface AlbumsProps {
     albumsList: Album[];
