@@ -16,7 +16,7 @@ export const CreateAlbumForm: React.FC<CreateAlbumForm> = ({ onCreate }) => {
 
     const album: CreateAlbumRequest = {
         title,
-        userId: 1
+        userId: 0
     };
     onCreate(album)
     setTitle('')

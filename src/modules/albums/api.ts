@@ -14,4 +14,4 @@ export interface CreateAlbumResponse {
     id: number
 }
 
-export const albumPost = (album: CreateAlbumRequest) => api.post<CreateAlbumResponse>('/albums', album)
+export const albumPost = (album: CreateAlbumRequest) => api.post<CreateAlbumResponse>('/albums', album);
