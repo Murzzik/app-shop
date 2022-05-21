@@ -2,18 +2,18 @@ import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
 import thunk from 'redux-thunk';
 import {posts, PostsState} from './modules/posts/reducer';
 import {albums, AlbumsState} from "./modules/albums/reducer";
-import {GithubRepositoryState, gitRepos} from "./modules/github/reducer";
+import {GithubRepositoryState, gitHubRepositories} from "./modules/github/reducer";
 
 const reducers = {
     posts,
     albums,
-    gitRepos,
+    gitHubRepositories,
 };
 
 export interface StoreState {
     posts: PostsState;
     albums: AlbumsState;
-    gitHubRepositoriesList: GithubRepositoryState;
+    gitHubRepositories: GithubRepositoryState;
 }
 
 export const configureStore = () => {

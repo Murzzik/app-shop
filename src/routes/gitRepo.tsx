@@ -22,7 +22,7 @@ export const GitRepositoriesContainer: React.FC<GitRepoProps> = ({onSearch}) => 
 };
 
 const mapStateToProps = (state: StoreState) => ({
-    list: state.gitHubRepositoriesList
+    list: state.gitHubRepositories
 })
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(
     {onSearch: searchGithubRepositories}, dispatch);

@@ -11,7 +11,7 @@ const initialState: GithubRepositoryState = {
     list: []
 };
 
-export const gitRepos = (state = initialState, action: AnyAction) => {
+export const gitHubRepositories = (state = initialState, action: AnyAction) => {
     switch (action.type) {
         case SEARCH_GITHUB_REPOSITORIES:
             return {
