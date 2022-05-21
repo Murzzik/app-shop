@@ -1,10 +1,10 @@
-import {CreateRepoRequest} from "../modules/github/api";
-import React, {useState , MouseEvent} from "react";
+import React, {MouseEvent, useState} from "react";
 import {Button, Col, Form, Input, Row} from "antd";
+import {GithubRepository} from "../modules/github/types";
 
 
 interface RepoSearchForm {
-    onSearch: (gitRepo: CreateRepoRequest) => void
+    onSearch: (name: string) => void
 }
 
 export const RepoSearchForm: React.FC<RepoSearchForm> = ({ onSearch }) => {
@@ -13,12 +13,8 @@ export const RepoSearchForm: React.FC<RepoSearchForm> = ({ onSearch }) => {
     const onChangeRepoTitle = (e: any) => setRepoTitle(e.target.value)
 
     const onClick = (e: MouseEvent<HTMLButtonElement>) => {
-        const gitRepo: CreateRepoRequest = {
-            total_count: 5,
-            incomplete_results: true,
-            items: [{full_name: repoTitle, id: 1}]
-        }
-      onSearch(gitRepo)
+        const GithubRepositoriesList = repoTitle
+      onSearch(GithubRepositoriesList)
     };
     return (
         <Row>

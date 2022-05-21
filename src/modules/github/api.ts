@@ -1,19 +1,13 @@
-import {GitRepo} from './types';
-import { createClient } from '../../api';
+import {createClient} from '../../api';
+import {GithubRepository} from "./types";
 
+const api = createClient('https://api.github.com/')
 
-const api = createClient('https://api.github.com/search/repositories')
-
-export const getRepo = (s: string) => api.get<GitRepo[]>(`/search/repositories?s=${s}`)
-
-export interface CreateRepoRequest {
+//naming
+export interface SearchRepositoriesResponse {
     total_count: number;
     incomplete_results: boolean;
-    items: [{id: number, full_name: string}]
-}
-export interface CreateRepoResponse {
-    id: number
+    items: GithubRepository[]
 }
 
-export const gitRepoPost = (gitRepo: CreateRepoRequest) =>
-    api.post<CreateRepoResponse>('/search/repositories', gitRepo)
+export const searchRepositories = (name: string) => api.get<SearchRepositoriesResponse>(`search/repositories?q=${name}`)

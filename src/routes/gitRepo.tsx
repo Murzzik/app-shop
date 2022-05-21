@@ -1,36 +1,30 @@
-import {CreateRepoRequest} from "../modules/github/api";
-import React, {useEffect} from "react";
+import React from "react";
 import {RepoSearchForm} from "../components/RepoSearchForm";
 import {bindActionCreators, Dispatch} from "redux";
-import {loadRepo} from "../modules/github/action";
+import {searchGithubRepositories} from "../modules/github/action";
 import {connect} from "react-redux";
-import {searchGitRepo} from "../modules/github/services";
-import {StoreState} from "../store";
+import {StoreState} from '../store';
 
 interface GitRepoProps {
-    onLoadRepos: (s: string) => void
-    onSearch: (gitRepo: CreateRepoRequest) => void
+    onSearch: (name: string) => void
 }
 
-export const GitRepoContainer: React.FC<GitRepoProps> = ({onSearch, onLoadRepos}) => {
+export const GitRepositoriesContainer: React.FC<GitRepoProps> = ({onSearch}) => {
 
-    const onSearchRepo = (gitRepo: CreateRepoRequest) => {
-        onLoadRepos(gitRepo.items[0].full_name)
-        onSearch(gitRepo)
+    const onSearchRepositories = (name: string) => {
+        onSearch(name)
     }
     return (
         <>
-            <RepoSearchForm onSearch={onSearchRepo}/>
+            <RepoSearchForm onSearch={onSearchRepositories}/>
         </>
     )
 };
 
 const mapStateToProps = (state: StoreState) => ({
-    list: state.gitRepos.list
+    list: state.gitHubRepositoriesList
 })
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(
-    {onSearch: searchGitRepo,
-    onLoadRepos: loadRepo
-}, dispatch);
+    {onSearch: searchGithubRepositories}, dispatch);
 
-export const GitRepo = connect(mapStateToProps, mapDispatchToProps)(GitRepoContainer)
+export const GithubRepositories = connect(mapStateToProps, mapDispatchToProps)(GitRepositoriesContainer)

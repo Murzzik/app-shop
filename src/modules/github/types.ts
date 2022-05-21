@@ -1,5 +1,12 @@
-export interface GitRepo {
-    total_count: number;
-    incomplete_results: boolean;
-    items: [{id: number, full_name: string}]
+export interface GithubRepositoryOwner {
+    login: string;
+    id: number;
+    avatar: string;
+}
+
+export interface GithubRepository {
+    id: string;
+    name: string;
+    full_name: string;
+    owner: GithubRepositoryOwner;
 }

@@ -1,20 +1,19 @@
-import { Dispatch } from 'redux';
-import { getRepo } from './api';
+import {Dispatch} from 'redux';
+import {searchRepositories} from './api';
 
-export const LOAD_GIT_REPO = 'LOAD_GIT_REPO';
-export const LOAD_GIT_REPO_ERROR = 'LOAD_GIT_REPO_ERROR';
+export const SEARCH_GITHUB_REPOSITORIES = 'SEARCH_GITHUB_REPOSITORIES';
+export const SEARCH_GITHUB_REPOSITORIES_ERROR = 'SEARCH_GITHUB_REPOSITORIES_ERROR';
 
-export const loadRepo = (s: string) => async (dispatch: Dispatch) => {
+export const searchGithubRepositories = (name: string) => async (dispatch: Dispatch) => {
     try {
-        const list = await getRepo(s);
-
+        const list = await searchRepositories(name);
         dispatch({
-            type: LOAD_GIT_REPO,
+            type: SEARCH_GITHUB_REPOSITORIES,
             payload: list,
         });
     } catch (error) {
         dispatch({
-            type: LOAD_GIT_REPO_ERROR,
+            type: SEARCH_GITHUB_REPOSITORIES_ERROR,
             payload: error,
         })
     }
