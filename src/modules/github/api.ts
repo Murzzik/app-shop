@@ -3,7 +3,6 @@ import {GithubRepository} from "./types";
 
 const api = createClient('https://api.github.com/')
 
-//naming
 export interface SearchRepositoriesResponse {
     total_count: number;
     incomplete_results: boolean;
