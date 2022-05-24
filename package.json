@@ -7,7 +7,9 @@
     "start": "NODE_ENV=production node index.js",
     "watch": "NODE_ENV=development webpack serve",
     "build": "rm -rf dist && NODE_ENV=production webpack --mode production",
-    "test": "mocha"
+    "test": "mocha",
+    "lint": "eslint --ext .tsx,.ts src/",
+    "lint:fix": "npm run lint -- --fix"
   },
   "repository": {
     "type": "git",

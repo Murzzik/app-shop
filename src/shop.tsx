@@ -1,10 +1,10 @@
 import React from 'react';
-import {Provider} from 'react-redux';
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import {Posts} from './routes/posts';
-import {configureStore} from './store';
-import {Albums} from './routes/albums';
-import {GithubSearchRepositories} from "./components/RepoSearchForm";
+import { Provider } from 'react-redux';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Posts } from './routes/posts';
+import { configureStore } from './store';
+import { Albums } from './routes/albums';
+import { GithubSearchRepositories } from './components/RepoSearchForm';
 
 const store = configureStore();
 

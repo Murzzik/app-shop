@@ -15,12 +15,12 @@ interface ApiClient {
 
 const api =
     (service: string) => (method: HttpMethod): RequestMaker =>
-    <T>(url: string, body?: JsonData): Promise<T> =>
-    fetch(service + url, {
-        method,
-        body: body ? JSON.stringify(body) : undefined,
-    })
-    .then((response: Response) => response.json());
+        <T>(url: string, body?: JsonData): Promise<T> =>
+            fetch(service + url, {
+                method,
+                body: body ? JSON.stringify(body) : undefined,
+            })
+                .then((response: Response) => response.json());
 
 export const createClient = (service: string): ApiClient => httpMethods.reduce((exports, method) => ({
     ...exports,

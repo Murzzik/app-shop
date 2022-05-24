@@ -5,15 +5,15 @@ import { CREATE_ALBUM, CREATE_ALBUM_ERROR } from './services';
 
 export interface AlbumsState {
     albumsList: Album[];
-    error?: Error
+    error?: Error;
 }
 
 const initialState: AlbumsState = {
     albumsList: [],
-}
+};
 
 export const albums = (state = initialState, action: AnyAction) => {
-    switch (action.type) {
+    switch(action.type) {
         case LOAD_ALBUMS:
             return {
                 ...state,
@@ -22,8 +22,8 @@ export const albums = (state = initialState, action: AnyAction) => {
         case CREATE_ALBUM: {
             return {
                 ...state,
-                albumsList: [action.payload, ...state.albumsList]
-            }
+                albumsList: [action.payload, ...state.albumsList],
+            };
         }
         case CREATE_ALBUM_ERROR:
         case LOAD_ALBUMS_ERROR:
@@ -33,4 +33,4 @@ export const albums = (state = initialState, action: AnyAction) => {
             };
     }
     return state;
-}
+};

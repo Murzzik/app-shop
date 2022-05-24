@@ -1,9 +1,8 @@
 import { Dispatch } from 'redux';
 import { getAlbums } from './api';
 
-
 export const LOAD_ALBUMS = 'LOAD_ALBUMS';
-export const LOAD_ALBUMS_ERROR = 'LOAD_ALBUMS_ERROR'
+export const LOAD_ALBUMS_ERROR = 'LOAD_ALBUMS_ERROR';
 
 export const loadAlbums = () => async (dispatch: Dispatch) => {
     try {
@@ -13,10 +12,11 @@ export const loadAlbums = () => async (dispatch: Dispatch) => {
             type: LOAD_ALBUMS,
             payload: albumsList,
         });
-    }   catch (error) {
+    }
+    catch(error) {
         dispatch({
             type: LOAD_ALBUMS_ERROR,
-            payload: error
-        })
+            payload: error,
+        });
     }
-}
+};

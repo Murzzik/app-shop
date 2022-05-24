@@ -1,28 +1,28 @@
-import {SEARCH_GITHUB_REPOSITORIES, SEARCH_GITHUB_REPOSITORIES_ERROR} from "./action";
-import {AnyAction} from "redux";
-import {GithubRepository} from "./types";
+import { SEARCH_GITHUB_REPOSITORIES, SEARCH_GITHUB_REPOSITORIES_ERROR } from './action';
+import { AnyAction } from 'redux';
+import { GithubRepository } from './types';
 
 export interface GithubRepositoryState {
-    list: GithubRepository[];
-    error?: Error
+    list: GithubRepository[],
+    error?: Error,
 }
 
 const initialState: GithubRepositoryState = {
-    list: []
+    list: [],
 };
 
 export const gitHubRepositories = (state = initialState, action: AnyAction) => {
-    switch (action.type) {
+    switch(action.type) {
         case SEARCH_GITHUB_REPOSITORIES:
             return {
                 ...state,
-                list: [action.payload, ...state.list]
-            }
+                list: action.payload.items,
+            };
         case SEARCH_GITHUB_REPOSITORIES_ERROR:
             return {
                 ...state,
-                error: action.payload
-            }
+                error: action.payload,
+            };
     }
-    return state
-}
+    return state;
+};

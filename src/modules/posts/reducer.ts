@@ -12,7 +12,7 @@ const initialState: PostsState = {
 };
 
 export const posts = (state = initialState, action: AnyAction) => {
-    switch (action.type) {
+    switch(action.type) {
         case LOAD_POSTS:
             return {
                 ...state,

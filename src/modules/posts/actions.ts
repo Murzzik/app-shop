@@ -13,7 +13,8 @@ export const loadPosts = (/*page: number, limit: number*/) => async (dispatch: D
             type: LOAD_POSTS,
             payload: list,
         });
-    } catch (error) {
+    }
+    catch(error) {
         dispatch({
             type: LOAD_POSTS_ERROR,
             payload: error,

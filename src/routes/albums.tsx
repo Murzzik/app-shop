@@ -11,35 +11,31 @@ import { CreateAlbumForm } from '../components/CreateAlbumForm';
 
 interface AlbumsProps {
     albumsList: Album[];
-    onLoadAlbums: () => void
-    onCreateAlbum: (album: CreateAlbumRequest) => void
+    onLoadAlbums: () => void;
+    onCreateAlbum: (album: CreateAlbumRequest) => void;
 }
 
-
-export const AlbumsContainer: React.FC<AlbumsProps> = ({onLoadAlbums, albumsList, onCreateAlbum}) => {
-    useEffect(() =>  {
+export const AlbumsContainer: React.FC<AlbumsProps> = ({ onLoadAlbums, albumsList, onCreateAlbum }) => {
+    useEffect(() => {
         onLoadAlbums();
-    }, [])
+    }, []);
 
     const onCreate = (album: CreateAlbumRequest) => {
-        onCreateAlbum(album)
-    }
+        onCreateAlbum(album);
+    };
     return (
         <>
-            <CreateAlbumForm onCreate={onCreate}/>
-            <AlbumsList albumsList={albumsList}/>
+            <CreateAlbumForm onCreate={onCreate} />
+            <AlbumsList albumsList={albumsList} />
         </>
     );
 };
 
-
-
 const mapStateToProps = (state: StoreState) => ({
-    albumsList: state.albums.albumsList
-})
+    albumsList: state.albums.albumsList,
+});
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
-    bindActionCreators({onLoadAlbums: loadAlbums, onCreateAlbum: createAlbum}, dispatch);
+    bindActionCreators({ onLoadAlbums: loadAlbums, onCreateAlbum: createAlbum }, dispatch);
 
-
-export const Albums = connect(mapStateToProps, mapDispatchToProps)(AlbumsContainer)
+export const Albums = connect(mapStateToProps, mapDispatchToProps)(AlbumsContainer);

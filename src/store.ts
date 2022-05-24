@@ -1,9 +1,9 @@
-import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
-import {createLogger} from "redux-logger";
+import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
+import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
-import {posts, PostsState} from './modules/posts/reducer';
-import {albums, AlbumsState} from "./modules/albums/reducer";
-import {GithubRepositoryState, gitHubRepositories} from './modules/github/reducer';
+import { posts, PostsState } from './modules/posts/reducer';
+import { albums, AlbumsState } from './modules/albums/reducer';
+import { GithubRepositoryState, gitHubRepositories } from './modules/github/reducer';
 
 const loggerMiddleware = createLogger();
 
@@ -24,8 +24,8 @@ export const configureStore = () => {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
             ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
                 // Specify extension’s options like name, actionsDenylist, actionsCreators, serialize...
             })
@@ -33,5 +33,5 @@ export const configureStore = () => {
 
     const enhancer = composeEnhancers(applyMiddleware(thunk, loggerMiddleware));
 
-    return createStore(combineReducers(reducers), enhancer)
+    return createStore(combineReducers(reducers), enhancer);
 };
