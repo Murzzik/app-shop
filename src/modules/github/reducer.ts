@@ -1,9 +1,9 @@
 import { SEARCH_GITHUB_REPOSITORIES, SEARCH_GITHUB_REPOSITORIES_ERROR } from './action';
 import { AnyAction } from 'redux';
-import { GithubRepository } from './types';
+import { GithubRepositoryItem } from './types';
 
 export interface GithubRepositoryState {
-    list: GithubRepository[],
+    list: GithubRepositoryItem[],
     error?: Error,
 }
 

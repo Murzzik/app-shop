@@ -1,5 +1,5 @@
 import { CreateAlbumRequest } from '../modules/albums/api';
-import React, { useState, MouseEvent } from 'react';
+import React, { useState, MouseEvent, ChangeEvent } from 'react';
 import { Button, Col, Form, Input, Row } from 'antd';
 
 interface CreateAlbumForm {
@@ -9,7 +9,7 @@ interface CreateAlbumForm {
 export const CreateAlbumForm: React.FC<CreateAlbumForm> = ({ onCreate }) => {
     const [title, setTitle] = useState('');
 
-    const onChangeTitle = (e: any) => setTitle(e.target.value);
+    const onChangeTitle = (e: ChangeEvent<HTMLInputElement>) => setTitle(e.target.value);
 
     const onClick = (e: MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();

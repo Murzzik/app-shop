@@ -1,38 +1,42 @@
-import React, { MouseEvent, useState } from 'react';
-import { Button, Col, Form, Input, Row } from 'antd';
+import React, { ChangeEvent, useState } from 'react';
+import { Form } from 'antd';
 import { searchGithubRepositories } from '../modules/github/action';
 import { useDispatch, useSelector } from 'react-redux';
 import { StoreState } from '../store';
 import { RepositoriesItem } from './GithubRepositoryItem/GithubRepositoryItem';
-import { GithubRepository } from '../modules/github/types';
+import { GithubRepositoryItem } from '../modules/github/types';
+import './RepoSearchForm.css';
+import Search from 'antd/lib/input/Search';
 
 export const GithubSearchRepositories: React.FC = () => {
     const dispatch: any = useDispatch();
     const [searchName, setSearchName] = useState('');
     const { list } = useSelector((state: StoreState) => state.gitHubRepositories);
 
-    const onChangeRepoTitle = (e: any) => setSearchName(e.target.value);
+    const onChangeRepoTitle = (e: ChangeEvent<HTMLInputElement>) => setSearchName(e.target.value);
 
-    const onClick = (e: MouseEvent<HTMLButtonElement>) => {
+    const onClick = () => {
         dispatch(searchGithubRepositories(searchName));
         setSearchName('');
     };
 
     return (
-        <Row>
-            <Col span={8}>
-                <Form>
-                    <h2>Search Repo</h2>
-                    <Input
-                        placeholder="Title"
-                        name={'Repo Name'}
-                        value={searchName}
-                        onChange={onChangeRepoTitle}
-                    />
-                    <Button onClick={onClick}>Search Repo</Button>
-                </Form>
-            </Col>
-            {list.map((item: GithubRepository) => <RepositoriesItem key={item.id} item={item} />)}
-        </Row>
+        <div className="mainContainer">
+            <Form>
+                <h2 className="formHeaderTitle">Search Repositories</h2>
+                <Search
+                    className="searchInput"
+                    placeholder="Enter repository name"
+                    enterButton="Search"
+                    size="large"
+                    value={searchName}
+                    onSearch={onClick}
+                    onChange={onChangeRepoTitle}
+                />
+            </Form>
+            <div className="itemsContainer">
+                {list.map((item: GithubRepositoryItem) => <RepositoriesItem key={item.id} item={item} />)}
+            </div>
+        </div>
     );
 };

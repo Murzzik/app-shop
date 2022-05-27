@@ -1,0 +1,48 @@
+.mainContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.formHeaderTitle {
+    text-align: center;
+    font-weight: 700;
+}
+
+.searchInput {
+    display: flex;
+    margin: 20px auto;
+    width: 25%;
+}
+
+.searchBtn {
+    display: flex;
+    margin: 15px auto;
+}
+
+.itemsContainer {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.repositoryCardWrapper {
+    height: 400px;
+    position: relative;
+    width: 240px;
+    margin: 20px;
+}
+
+.repositoryCard {
+    height: 400px;
+    overflow: hidden;
+    margin: 25px;
+    transition: .3s;
+}
+
+.repositoryCard:hover {
+    position: absolute;
+    overflow: initial;
+    height: 480px;
+    z-index: 1000;
+}
