@@ -1,31 +1,35 @@
-import React from 'react';
-import './GithubRepositoryItem.module.css';
+import React, { useCallback } from 'react';
 import { Card } from 'antd';
 import { GithubRepositoryItem } from '../../modules/github/types';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export interface RepositoryItemProps {
     item: GithubRepositoryItem;
 }
 
-export const RepositoriesItem: React.FC<RepositoryItemProps> = (props: RepositoryItemProps) => {
+export const RepositoriesItems: React.FC<RepositoryItemProps> = (props: RepositoryItemProps) => {
     const { Meta } = Card;
     const { item } = props;
     const description = item.description ? item.description.substring(0, 125) : '';
+
+    const navigate = useNavigate();
+    const { userId } = useParams();
+    const handleOnClick = useCallback(() => navigate(`${item.id}`, {
+        replace: true,
+        state: userId,
+    }), [item.id, navigate, userId]);
+
     return (
-        <div className="repositoryCardWrapper">
-            <Card
-                className="repositoryCard"
-                hoverable
-                style={{ width: 240 }}
-                cover={<img alt="example" src={item.owner.avatar_url} />}
-            >
-                <Meta title={item.full_name} description={description} />
-            </Card>
-        </div>
+            <div className="repositoryCardWrapper">
+                <Card
+                        onClick={handleOnClick}
+                        className="repositoryCard"
+                        hoverable
+                        cover={<img alt="example" src={item.owner.avatar_url} />}
+                >
+                    <Meta title={item.full_name} description={description} />
+                </Card>
+            </div>
     );
 };
 
-// <div className="itemContainer">
-//     <p>{item.full_name}</p>
-//     <p>{item.description}</p>
-// </div>
