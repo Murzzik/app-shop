@@ -1,7 +1,7 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { Card } from 'antd';
 import { GithubRepositoryItem } from '../../modules/github/types';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 export interface RepositoryItemProps {
     item: GithubRepositoryItem;
@@ -13,11 +13,7 @@ export const RepositoriesItems: React.FC<RepositoryItemProps> = (props: Reposito
     const description = item.description ? item.description.substring(0, 125) : '';
 
     const navigate = useNavigate();
-    const { userId } = useParams();
-    const handleOnClick = useCallback(() => navigate(`${item.id}`, {
-        replace: true,
-        state: userId,
-    }), [item.id, navigate, userId]);
+    const handleOnClick = () => navigate('/github/' + item.id)
 
     return (
             <div className="repositoryCardWrapper">

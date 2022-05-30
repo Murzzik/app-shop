@@ -10,3 +10,4 @@ export interface SearchRepositoriesResponse {
 }
 
 export const searchRepositories = (name: string) => api.get<SearchRepositoriesResponse>(`search/repositories?q=${name}`);
+

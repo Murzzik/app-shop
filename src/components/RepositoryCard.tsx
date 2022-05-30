@@ -1,9 +1,13 @@
 import React from 'react';
 import { Card } from 'antd';
 import Meta from 'antd/es/card/Meta';
+import { useParams } from 'react-router-dom';
 
 
 const RepositoryCard: React.FC = () => {
+
+    const { userId } = useParams()
+    console.log(userId)
 
     return (
             <div className="repositoryCardWrapper">
