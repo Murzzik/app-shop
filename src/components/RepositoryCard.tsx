@@ -2,10 +2,14 @@ import React from 'react';
 import { Card } from 'antd';
 import Meta from 'antd/es/card/Meta';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { StoreState } from '../store';
 
 
 const RepositoryCard: React.FC = () => {
-
+    const dispatch: any = useDispatch()
+    const { item } = useSelector((state: StoreState) => state.gitHubDetailRepositories)
+    console.log(item)
     const { userId } = useParams()
     console.log(userId)
 
