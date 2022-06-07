@@ -16,7 +16,7 @@ export const Shop: React.FC = () => (
                 <Route path="/posts" element={<Posts />} />
                 <Route path="/albums" element={<Albums />} />
                 <Route path="/github" element={<GithubSearchRepositories />} />
-                <Route path="/github/:userId" element={<RepositoryCard />} />
+                <Route path="/github/:repoParam" element={<RepositoryCard />} />
                 <Route path="*" element="not found" />
             </Routes>
         </BrowserRouter>

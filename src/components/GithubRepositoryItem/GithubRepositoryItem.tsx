@@ -13,7 +13,7 @@ export const RepositoriesItems: React.FC<RepositoryItemProps> = (props: Reposito
     const description = item.description ? item.description.substring(0, 125) : '';
 
     const navigate = useNavigate();
-    const handleOnClick = () => navigate('/github/' + item.id)
+    const handleOnClick = () => navigate(`/github/${item.owner.login}+${item.name}`)
 
     return (
             <div className="repositoryCardWrapper">

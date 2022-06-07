@@ -1,28 +1,37 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card } from 'antd';
 import Meta from 'antd/es/card/Meta';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { StoreState } from '../store';
-
+import { githubRepositoryDetail } from '../modules/githubDetailRepository/action';
+import './RepositoryDetailCard.css'
 
 const RepositoryCard: React.FC = () => {
-    const dispatch: any = useDispatch()
-    const { item } = useSelector((state: StoreState) => state.gitHubDetailRepositories)
-    console.log(item)
-    const { userId } = useParams()
-    console.log(userId)
-
+    const dispatch: any = useDispatch();
+    const {item}: any = useSelector((state: StoreState) => state.gitHubDetailRepositories);
+    const {repoParam} = useParams();
+    const [owner, repositoryName] = repoParam?.split('+') || [];
+    useEffect(() => {
+        if(owner && repositoryName && !item) {
+            dispatch(githubRepositoryDetail(owner, repositoryName));
+        }
+    }, [item]);
     return (
-            <div className="repositoryCardWrapper">
-                <Card
+        <>
+            {item ?
+                <div className="repositoryCardWrapper">
+                    <Card
                         className="repositoryCard"
                         hoverable
-                        cover={<img alt="example" src='https://www.thesprucepets.com/thmb/MSM1DIkbE1cePUU__IY0iddwbJw=/1080x1080/filters:no_upscale():max_bytes(150000):strip_icc()/31878200_171911650157470_2552192489247211520_n-5ba0559b4cedfd0025a1b9ac.jpg' />}
-                >
-                    <Meta title='Im little corgi' description='Wanna be your friend' />
-                </Card>
-            </div>
+                        cover={<img alt="example"
+                                    src={item.owner.avatar_url} />}
+                    >
+                        <Meta title={item.owner.login} description={item.description} />
+                    </Card>
+                </div>
+            : null}
+        </>
     );
 };
 

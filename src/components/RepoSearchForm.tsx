@@ -17,7 +17,6 @@ export const GithubSearchRepositories: React.FC = () => {
 
     const onClick = () => {
         dispatch(searchGithubRepositories(searchName));
-        setSearchName('');
     };
 
     return (

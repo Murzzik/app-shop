@@ -7,12 +7,12 @@ import {
 } from "./action";
 
 export interface GithubDetailRepositoryState {
-    item: GithubRepositoryItem[],
+    item: GithubRepositoryItem[] | null,
     error?: Error,
 }
 
 const initialState: GithubDetailRepositoryState = {
-    item: []
+    item: null
 }
 
 export const gitHubDetailRepositories = (state = initialState, action: AnyAction) => {
@@ -24,7 +24,7 @@ export const gitHubDetailRepositories = (state = initialState, action: AnyAction
         case GITHUB_DETAIL_REPOSITORY_SUCCESS:
             return {
                 ...state,
-                item: action.payload.items
+                item: action.payload
             };
         case GITHUB_DETAIL_REPOSITORY_ERROR:
             return {
