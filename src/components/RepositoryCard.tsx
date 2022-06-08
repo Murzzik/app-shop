@@ -5,12 +5,12 @@ import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { StoreState } from '../store';
 import { githubRepositoryDetail } from '../modules/githubDetailRepository/action';
-import './RepositoryDetailCard.css'
+import './RepositoryDetailCard.css';
 
 const RepositoryCard: React.FC = () => {
     const dispatch: any = useDispatch();
-    const {item}: any = useSelector((state: StoreState) => state.gitHubDetailRepositories);
-    const {repoParam} = useParams();
+    const { item }: any = useSelector((state: StoreState) => state.gitHubDetailRepositories);
+    const { repoParam } = useParams();
     const [owner, repositoryName] = repoParam?.split('+') || [];
     useEffect(() => {
         if(owner && repositoryName && !item) {
@@ -21,16 +21,22 @@ const RepositoryCard: React.FC = () => {
         <>
             {item ?
                 <div className="repositoryCardWrapper">
-                    <Card
-                        className="repositoryCard"
-                        hoverable
-                        cover={<img alt="example"
-                                    src={item.owner.avatar_url} />}
-                    >
-                        <Meta title={item.owner.login} description={item.description} />
-                    </Card>
+                    <div className="repositoryCardItem">
+                        <img alt="example" src={item.owner.avatar_url} />
+                        <div>
+                            <div className='descriptionWrapper'>
+                                Author name:<b className='dataSpaces'>{item.owner.login}</b>
+                            </div>
+                            <div className='descriptionWrapper'>
+                                Repository name:<b className='dataSpaces'>{item.name}</b>
+                            </div>
+                            <div className='descriptionWrapper'>
+                                Repository url:<b className='dataSpaces'><a href={item.svn_url}>{item.name}</a></b>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            : null}
+                : null}
         </>
     );
 };
