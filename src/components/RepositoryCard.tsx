@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
-import { Card } from 'antd';
-import Meta from 'antd/es/card/Meta';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { StoreState } from '../store';
 import { githubRepositoryDetail } from '../modules/githubDetailRepository/action';
 import './RepositoryDetailCard.css';
+import { Descriptions } from 'antd';
 
 const RepositoryCard: React.FC = () => {
     const dispatch: any = useDispatch();
@@ -20,26 +19,24 @@ const RepositoryCard: React.FC = () => {
     return (
         <>
             {item ?
-                <div className="repositoryCardWrapper">
-                    <div className="repositoryCardItem">
+                <div className="detailCardWrapper">
+                    <a href={item.owner.html_url} target="_blank" rel="noreferrer">
                         <img alt="example" src={item.owner.avatar_url} />
-                        <div>
-                            <div className='descriptionWrapper'>
-                                Author name:<b className='dataSpaces'>{item.owner.login}</b>
-                            </div>
-                            <div className='descriptionWrapper'>
-                                Repository name:<b className='dataSpaces'>{item.name}</b>
-                            </div>
-                            <div className='descriptionWrapper'>
-                                Repository url:<b className='dataSpaces'><a href={item.svn_url}>{item.name}</a></b>
-                            </div>
-                        </div>
-                    </div>
+                    </a>
+                    <Descriptions className="descriptionWrapper" title="User Info" layout="vertical" column={4}
+                                  bordered>
+                        <Descriptions.Item label="User name">{item.owner.login}</Descriptions.Item>
+                        <Descriptions.Item label="Repository name">{item.name}</Descriptions.Item>
+                        <Descriptions.Item label="Repository link">
+                            <a href={item.svn_url} target="_blank" rel="noreferrer">{item.name}</a>
+                        </Descriptions.Item>
+                        <Descriptions.Item label="Subscribers count">{item.subscribers_count}</Descriptions.Item>
+                        <Descriptions.Item label="Repository description">{item.description}</Descriptions.Item>
+                    </Descriptions>
                 </div>
                 : null}
         </>
     );
 };
-
 export default RepositoryCard;
 

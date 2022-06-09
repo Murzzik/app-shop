@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import { LOAD_POSTS, LOAD_POSTS_ERROR } from './actions';
+import { CREATE_POST, CREATE_POST_ERROR, LOAD_POSTS, LOAD_POSTS_ERROR } from './services';
 import { Post } from './types';
 
 export interface PostsState {
@@ -18,6 +18,14 @@ export const posts = (state = initialState, action: AnyAction) => {
                 ...state,
                 list: action.payload,
             };
+
+        case CREATE_POST:
+            return {
+                ...state,
+                list: [action.payload, ...state.list],
+            };
+
+        case CREATE_POST_ERROR:
         case LOAD_POSTS_ERROR:
             return {
                 ...state,
