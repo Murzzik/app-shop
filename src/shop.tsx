@@ -5,7 +5,7 @@ import { Posts } from './routes/posts';
 import { configureStore } from './store';
 import { Albums } from './routes/albums';
 import { GithubSearchRepositories } from './components/RepoSearchForm';
-import RepositoryCard from './components/RepositoryCard';
+import RepositoryCard from './components/RepositoryCardForLogic';
 
 const store = configureStore();
 

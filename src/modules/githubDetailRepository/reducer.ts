@@ -1,5 +1,5 @@
 import {GithubRepositoryItem} from "../github/types";
-import {AnyAction} from "redux";
+import { AnyAction } from "redux";
 import {
     GITHUB_DETAIL_REPOSITORY_ERROR,
     GITHUB_DETAIL_REPOSITORY_REQUEST,
@@ -7,7 +7,7 @@ import {
 } from "./action";
 
 export interface GithubDetailRepositoryState {
-    item: GithubRepositoryItem[] | null,
+    item: GithubRepositoryItem | null,
     error?: Error,
 }
 
@@ -15,7 +15,7 @@ const initialState: GithubDetailRepositoryState = {
     item: null
 }
 
-export const gitHubDetailRepositories = (state = initialState, action: AnyAction) => {
+export const githubRepository = (state = initialState, action: AnyAction) => {
     switch (action.type) {
         case GITHUB_DETAIL_REPOSITORY_REQUEST:
             return {
