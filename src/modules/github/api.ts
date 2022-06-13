@@ -9,5 +9,6 @@ export interface SearchRepositoriesResponse {
     items: GithubRepositoryItem[];
 }
 
-export const searchRepositories = (name: string) => api.get<SearchRepositoriesResponse>(`search/repositories?q=${name}`);
+export const searchRepositories = (name: string, currentPage: number, perPage: number) =>
+    api.get<SearchRepositoriesResponse>(`search/repositories?q=${name}&per_page=${perPage}&page=${currentPage}`);
 

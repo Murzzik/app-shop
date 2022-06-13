@@ -1,10 +1,10 @@
-import {GithubRepositoryItem} from "../github/types";
-import { AnyAction } from "redux";
+import { GithubRepositoryItem } from '../github/types';
+import { AnyAction } from 'redux';
 import {
     GITHUB_DETAIL_REPOSITORY_ERROR,
     GITHUB_DETAIL_REPOSITORY_REQUEST,
-    GITHUB_DETAIL_REPOSITORY_SUCCESS
-} from "./action";
+    GITHUB_DETAIL_REPOSITORY_SUCCESS,
+} from './action';
 
 export interface GithubDetailRepositoryState {
     item: GithubRepositoryItem | null,
@@ -12,19 +12,19 @@ export interface GithubDetailRepositoryState {
 }
 
 const initialState: GithubDetailRepositoryState = {
-    item: null
-}
+    item: null,
+};
 
 export const githubRepository = (state = initialState, action: AnyAction) => {
-    switch (action.type) {
+    switch(action.type) {
         case GITHUB_DETAIL_REPOSITORY_REQUEST:
             return {
-                ...state
+                ...state,
             };
         case GITHUB_DETAIL_REPOSITORY_SUCCESS:
             return {
                 ...state,
-                item: action.payload
+                item: action.payload,
             };
         case GITHUB_DETAIL_REPOSITORY_ERROR:
             return {
@@ -33,4 +33,4 @@ export const githubRepository = (state = initialState, action: AnyAction) => {
             };
     }
     return state;
-}
+};

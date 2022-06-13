@@ -8,7 +8,7 @@ import { GithubSearchRepositories } from './components/RepoSearchForm';
 import RepositoryCard from './components/RepositoryCardForLogic';
 
 const store = configureStore();
-
+// TODO: https://flaviocopes.com/react-router-data-from-route/
 export const Shop: React.FC = () => (
     <Provider store={store}>
         <BrowserRouter>
