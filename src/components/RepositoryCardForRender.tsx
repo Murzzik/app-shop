@@ -15,8 +15,9 @@ export const RepositoryCardForRender = (props: RepositoryCardForRenderProps) => 
                           layout="vertical"
                           bordered
             >
-                <Descriptions.Item label="User name"><a
-                    href={props.item.owner.html_url}>{props.item.owner.login}</a></Descriptions.Item>
+                <Descriptions.Item label="User name">
+                    <a href={props.item.owner.html_url}>{props.item.owner.login}</a>
+                </Descriptions.Item>
                 <Descriptions.Item label="Repository name">
                     <a href={props.item.svn_url} target="_blank" rel="noreferrer noopener">
                         {props.item.name}
