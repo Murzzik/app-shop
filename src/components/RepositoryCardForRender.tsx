@@ -6,25 +6,26 @@ interface RepositoryCardForRenderProps {
     item: GithubRepositoryItem;
 }
 
-export const RepositoryCardForRender = (props: RepositoryCardForRenderProps) => {
+export const RepositoryCardForRender: React.FC<RepositoryCardForRenderProps> = ({ item }) => {
     return (
         <div className="detailCardWrapper">
-            <Image alt="example" src={props.item.owner.avatar_url} />
-            <Descriptions className="descriptionWrapper"
-                          title="Repository info"
-                          layout="vertical"
-                          bordered
+            <Image alt="example" src={item.owner.avatar_url} />
+            <Descriptions
+                    className="descriptionWrapper"
+                    title="Repository info"
+                    layout="vertical"
+                    bordered
             >
                 <Descriptions.Item label="User name">
-                    <a href={props.item.owner.html_url}>{props.item.owner.login}</a>
+                    <a href={item.owner.html_url}>{item.owner.login}</a>
                 </Descriptions.Item>
                 <Descriptions.Item label="Repository name">
-                    <a href={props.item.svn_url} target="_blank" rel="noreferrer noopener">
-                        {props.item.name}
+                    <a href={item.svn_url} target="_blank" rel="noreferrer noopener">
+                        {item.name}
                     </a>
                 </Descriptions.Item>
-                <Descriptions.Item label="Subscribers count">{props.item.subscribers_count}</Descriptions.Item>
-                <Descriptions.Item label="Repository description">{props.item.description}</Descriptions.Item>
+                <Descriptions.Item label="Subscribers count">{item.subscribers_count}</Descriptions.Item>
+                <Descriptions.Item label="Repository description">{item.description}</Descriptions.Item>
             </Descriptions>
         </div>
     );
