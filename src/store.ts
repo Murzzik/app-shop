@@ -3,7 +3,7 @@ import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 import { posts, PostsState } from './modules/posts/reducer';
 import { albums, AlbumsState } from './modules/albums/reducer';
-import { GithubRepositoryState, gitHubRepositories } from './modules/github/reducer';
+import { GithubRepositoriesState, gitHubRepositories } from './modules/github/reducer';
 import { githubRepository, GithubDetailRepositoryState} from "./modules/githubDetailRepository/reducer";
 
 const loggerMiddleware = createLogger();
@@ -18,7 +18,7 @@ const reducers = {
 export interface StoreState {
     posts: PostsState;
     albums: AlbumsState;
-    gitHubRepositories: GithubRepositoryState;
+    gitHubRepositories: GithubRepositoriesState;
     githubRepository: GithubDetailRepositoryState;
 }
 

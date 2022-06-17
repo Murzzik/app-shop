@@ -18,7 +18,7 @@ const RepositoryCard: React.FC = () => {
     }, [item, owner, repositoryName]);
     return (
         <>
-            {item ? <RepositoryCardForRender item={item} /> : null}
+            {item && <RepositoryCardForRender item={item} />}
         </>
     );
 };

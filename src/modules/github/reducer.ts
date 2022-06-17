@@ -5,18 +5,17 @@ import {
 } from './action';
 import { AnyAction } from 'redux';
 import { GithubRepositoryItem } from './types';
-import { act } from 'react-dom/test-utils';
 
-export interface GithubRepositoryState {
+export interface GithubRepositoriesState {
     list: GithubRepositoryItem[],
     error?: Error,
     isLoading: boolean,
-    total_repositories_count: number
+    totalRepositoriesCount: number
 }
 
-const initialState: GithubRepositoryState = {
+const initialState: GithubRepositoriesState = {
     list: [],
-    total_repositories_count: 0,
+    totalRepositoriesCount: 0,
     isLoading: false,
 };
 
@@ -30,7 +29,7 @@ export const gitHubRepositories = (state = initialState, action: AnyAction) => {
         case SEARCH_GITHUB_REPOSITORIES_SUCCESS:
             return {
                 ...state,
-                total_repositories_count: action.payload.total_count,
+                totalRepositoriesCount: action.payload.total_count,
                 list: action.payload.items,
                 isLoading: false,
             };
