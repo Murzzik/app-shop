@@ -8,20 +8,19 @@ import { GithubRepositoryItem } from '../modules/github/types';
 import './RepoSearchForm.css';
 import Search from 'antd/lib/input/Search';
 
-const initialPageSize = 10;
+const INITIAL_PAGE_SIZE = 10;
+const MAX_PAGES_AMOUNT = 1000;
 
 export const GithubSearchRepositories: React.FC = () => {
     const dispatch: any = useDispatch();
     const [searchName, setSearchName] = useState('');
     const {list, isLoading, totalRepositoriesCount} = useSelector((state: StoreState) => state.gitHubRepositories);
     const onChangeRepositoryTitle = (e: ChangeEvent<HTMLInputElement>) => setSearchName(e.target.value);
-    const [pageSize, setPageSize] = useState<number>(initialPageSize);
-    const maxPageValue = 1000;
+    const [pageSize, setPageSize] = useState<number>(INITIAL_PAGE_SIZE);
 
-    // const totalPages = () => (totalRepositoriesCount <= maxPageValue && totalRepositoriesCount) || maxPageValue;
+    const totalPagesFound =  (totalRepositoriesCount <= MAX_PAGES_AMOUNT && totalRepositoriesCount);
 
     const onSearch = () => {
-        console.log(pageSize)
         dispatch(searchGithubRepositories(searchName, pageSize));
     };
     const onChangeCurrentPage = (currentPage: number) => {
@@ -31,6 +30,7 @@ export const GithubSearchRepositories: React.FC = () => {
         setPageSize(pageSize);
         dispatch(searchGithubRepositories(searchName, pageSize, currentPage));
     };
+
     // TODO: Menu with Link or Navigate
     return (
             <div className="mainContainer">
@@ -59,7 +59,7 @@ export const GithubSearchRepositories: React.FC = () => {
                                 showSizeChanger
                                 onShowSizeChange={onChangeCurrentPage}
                                 pageSizeOptions={['5', '10', '25']}
-                                total={(totalRepositoriesCount <= maxPageValue && totalRepositoriesCount) || maxPageValue}
+                                total={totalPagesFound || MAX_PAGES_AMOUNT}
                                 onChange={onShowPageSizeChange}
                         />
                 }
