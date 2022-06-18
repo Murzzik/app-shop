@@ -1,24 +1,21 @@
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
-import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 import { posts, PostsState } from './modules/posts/reducer';
 import { albums, AlbumsState } from './modules/albums/reducer';
-import { GithubRepositoriesState, gitHubRepositories } from './modules/github/reducer';
+import { GithubRepositoriesState, githubRepositories } from './modules/github/reducer';
 import { githubRepository, GithubDetailRepositoryState} from "./modules/githubDetailRepository/reducer";
-
-const loggerMiddleware = createLogger();
 
 const reducers = {
     posts,
     albums,
-    gitHubRepositories,
+    githubRepositories,
     githubRepository,
 };
 
 export interface StoreState {
     posts: PostsState;
     albums: AlbumsState;
-    gitHubRepositories: GithubRepositoriesState;
+    githubRepositories: GithubRepositoriesState;
     githubRepository: GithubDetailRepositoryState;
 }
 
@@ -34,7 +31,7 @@ export const configureStore = () => {
             })
             : compose;
 
-    const enhancer = composeEnhancers(applyMiddleware(thunk, loggerMiddleware));
+    const enhancer = composeEnhancers(applyMiddleware(thunk));
 
     return createStore(combineReducers(reducers), enhancer);
 };

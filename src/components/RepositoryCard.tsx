@@ -2,12 +2,11 @@ import React from 'react';
 import { Descriptions, Image } from 'antd';
 import { GithubRepositoryItem } from '../modules/github/types';
 
-interface IRepositoryCardForRenderProps {
+interface RepositoryCardProps {
     item: GithubRepositoryItem;
 }
 
-export const RepositoryCard = (props: IRepositoryCardForRenderProps) => {
-    const {item} = props;
+export const RepositoryCard: React.FC<RepositoryCardProps> = ({ item }) => {
 
     return (
             <div className="detailCardWrapper">

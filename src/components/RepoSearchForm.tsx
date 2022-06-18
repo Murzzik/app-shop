@@ -13,22 +13,22 @@ const MAX_PAGES_AMOUNT = 1000;
 
 export const GithubSearchRepositories: React.FC = () => {
     const dispatch: any = useDispatch();
-    const {list, isLoading, totalRepositoriesCount} = useSelector((state: StoreState) => state.gitHubRepositories);
+    const {list, isLoading, totalRepositoriesCount} = useSelector((state: StoreState) => state.githubRepositories);
     const [searchName, setSearchName] = useState('');
-    const [pageSize, setPageSize] = useState<number>(INITIAL_PAGE_SIZE);
+    const [size, setSize] = useState<number>(INITIAL_PAGE_SIZE);
 
     const onChangeRepositoryTitle = (e: ChangeEvent<HTMLInputElement>) => setSearchName(e.target.value);
     const totalPagesAmount = totalRepositoriesCount <= MAX_PAGES_AMOUNT && totalRepositoriesCount;
     
     const onSearch = () => {
-        dispatch(searchGithubRepositories(searchName, pageSize));
+        dispatch(searchGithubRepositories(searchName, size));
     };
-    const onChangeCurrentPage = (currentPage: number) => {
-        dispatch(searchGithubRepositories(searchName, pageSize, currentPage));
+    const onChangeCurrentPage = (page: number) => {
+        dispatch(searchGithubRepositories(searchName, size, page));
     };
-    const onShowPageSizeChange = (currentPage: number, pageSize: number) => {
-        setPageSize(pageSize);
-        dispatch(searchGithubRepositories(searchName, pageSize, currentPage));
+    const onShowPageSizeChange = (page: number, size: number) => {
+        setSize(size);
+        dispatch(searchGithubRepositories(searchName, size, page));
     };
     // TODO: Menu with Link or Navigate
     return (

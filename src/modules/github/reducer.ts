@@ -19,7 +19,7 @@ const initialState: GithubRepositoriesState = {
     isLoading: false,
 };
 
-export const gitHubRepositories = (state = initialState, action: AnyAction) => {
+export const githubRepositories = (state = initialState, action: AnyAction) => {
     switch(action.type) {
         case SEARCH_GITHUB_REPOSITORIES_REQUEST:
             return {
