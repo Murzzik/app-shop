@@ -4,23 +4,24 @@ import { useDispatch, useSelector } from 'react-redux';
 import { StoreState } from '../store';
 import { githubRepositoryDetail } from '../modules/githubDetailRepository/action';
 import './RepositoryDetailCard.css';
-import { RepositoryCardForRender } from './RepositoryCardForRender';
+import { RepositoryCard } from './RepositoryCard';
 
-const RepositoryCard: React.FC = () => {
+export const RepositoryCardContainer: React.FC = () => {
     const dispatch: any = useDispatch();
-    const { item } = useSelector((state: StoreState) => state.githubRepository);
-    const { repoParam } = useParams();
+    const {item} = useSelector((state: StoreState) => state.githubRepository);
+    const {repoParam} = useParams();
     const [owner, repositoryName] = repoParam?.split('+') || [];
+
     useEffect(() => {
         if(owner && repositoryName && !item) {
             dispatch(githubRepositoryDetail(owner, repositoryName));
         }
     }, [item, owner, repositoryName]);
+
     return (
-        <>
-            {item && <RepositoryCardForRender item={item} />}
-        </>
+            <>
+                {item && <RepositoryCard item={item} />}
+            </>
     );
 };
-export default RepositoryCard;
 

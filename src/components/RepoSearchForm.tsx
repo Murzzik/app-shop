@@ -8,26 +8,25 @@ import { GithubRepositoryItem } from '../modules/github/types';
 import './RepoSearchForm.css';
 import Search from 'antd/lib/input/Search';
 
-const initialPageSize = 10;
+const INITIAL_PAGE_SIZE = 10;
+const MAX_PAGES_AMOUNT = 1000;
 
 export const GithubSearchRepositories: React.FC = () => {
     const dispatch: any = useDispatch();
-    const [searchName, setSearchName] = useState('');
     const {list, isLoading, totalRepositoriesCount} = useSelector((state: StoreState) => state.gitHubRepositories);
+    const [searchName, setSearchName] = useState('');
+    const [pageSize, setPageSize] = useState<number>(INITIAL_PAGE_SIZE);
+
     const onChangeRepositoryTitle = (e: ChangeEvent<HTMLInputElement>) => setSearchName(e.target.value);
-    const [pageSize, setPageSize] = useState<number>(initialPageSize);
-    const maxPageValue = 1000;
-
-    // const totalPages = () => (totalRepositoriesCount <= maxPageValue && totalRepositoriesCount) || maxPageValue;
-
+    const totalPagesAmount = totalRepositoriesCount <= MAX_PAGES_AMOUNT && totalRepositoriesCount;
+    
     const onSearch = () => {
-        console.log(pageSize)
         dispatch(searchGithubRepositories(searchName, pageSize));
     };
     const onChangeCurrentPage = (currentPage: number) => {
         dispatch(searchGithubRepositories(searchName, pageSize, currentPage));
     };
-    const onShowPageSizeChange = (pageSize: number, currentPage: number) => {
+    const onShowPageSizeChange = (currentPage: number, pageSize: number) => {
         setPageSize(pageSize);
         dispatch(searchGithubRepositories(searchName, pageSize, currentPage));
     };
@@ -53,14 +52,14 @@ export const GithubSearchRepositories: React.FC = () => {
                     </div>
                 </Spin>
                 {
-                        list.length &&
+                        !!list.length &&
                         <Pagination
                                 className="paginationBar"
                                 showSizeChanger
-                                onShowSizeChange={onChangeCurrentPage}
+                                onShowSizeChange={onShowPageSizeChange}
                                 pageSizeOptions={['5', '10', '25']}
-                                total={(totalRepositoriesCount <= maxPageValue && totalRepositoriesCount) || maxPageValue}
-                                onChange={onShowPageSizeChange}
+                                total={totalPagesAmount || MAX_PAGES_AMOUNT}
+                                onChange={onChangeCurrentPage}
                         />
                 }
             </div>
