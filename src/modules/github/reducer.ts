@@ -5,18 +5,27 @@ import {
 } from './action';
 import { AnyAction } from 'redux';
 import { GithubRepositoryItem } from './types';
+import {INITIAL_PAGE_SIZE} from "../../components/RepoSearchForm";
 
 export interface GithubRepositoriesState {
-    list: GithubRepositoryItem[],
+    list: GithubRepositoryItem[] | null,
     error?: Error,
     isLoading: boolean,
-    totalRepositoriesCount: number
+    totalRepositoriesCount: number,
+    pagination: {
+        page: number;
+        size: number;
+    };
 }
 
 const initialState: GithubRepositoriesState = {
-    list: [],
+    list: null,
     totalRepositoriesCount: 0,
     isLoading: false,
+    pagination: {
+        page: 1,
+        size: INITIAL_PAGE_SIZE,
+    }
 };
 
 export const githubRepositories = (state = initialState, action: AnyAction) => {

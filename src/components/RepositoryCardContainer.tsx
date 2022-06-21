@@ -5,6 +5,7 @@ import { StoreState } from '../store';
 import { githubRepositoryDetail } from '../modules/githubDetailRepository/action';
 import './RepositoryDetailCard.css';
 import { RepositoryCard } from './RepositoryCard';
+import { Skeleton } from 'antd';
 
 export const RepositoryCardContainer: React.FC = () => {
     const dispatch: any = useDispatch();

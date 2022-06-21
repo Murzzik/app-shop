@@ -15,6 +15,7 @@ export const searchGithubRepositories = (name: string, size: number, page = 1) =
         dispatch({
             type: SEARCH_GITHUB_REPOSITORIES_SUCCESS,
             payload: list,
+            pagination: size, page
         });
     }
     catch(error) {
