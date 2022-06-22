@@ -9,8 +9,8 @@ import { Skeleton } from 'antd';
 
 export const RepositoryCardContainer: React.FC = () => {
     const dispatch: any = useDispatch();
-    const {item} = useSelector((state: StoreState) => state.githubRepository);
-    const {repoParam} = useParams();
+    const { item } = useSelector((state: StoreState) => state.githubRepository);
+    const { repoParam } = useParams();
     const [owner, repositoryName] = repoParam?.split('+') || [];
 
     useEffect(() => {
@@ -20,9 +20,9 @@ export const RepositoryCardContainer: React.FC = () => {
     }, [item, owner, repositoryName]);
 
     return (
-            <>
-                {item && <RepositoryCard item={item} />}
-            </>
+        <>
+            {item && <RepositoryCard item={item} />}
+        </>
     );
 };
 

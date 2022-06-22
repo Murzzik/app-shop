@@ -9,25 +9,25 @@ interface RepositoryCardProps {
 export const RepositoryCard: React.FC<RepositoryCardProps> = ({ item }) => {
 
     return (
-            <div className="detailCardWrapper">
-                <Image alt="example" src={item.owner.avatar_url} />
-                <Descriptions
-                        className="descriptionWrapper"
-                        title="Repository info"
-                        layout="vertical"
-                        bordered
-                >
-                    <Descriptions.Item label="User name">
-                        <a href={item.owner.html_url}>{item.owner.login}</a>
-                    </Descriptions.Item>
-                    <Descriptions.Item label="Repository name">
-                        <a href={item.svn_url} target="_blank" rel="noreferrer noopener">
-                            {item.name}
-                        </a>
-                    </Descriptions.Item>
-                    <Descriptions.Item label="Subscribers count">{item.subscribers_count}</Descriptions.Item>
-                    <Descriptions.Item label="Repository description">{item.description}</Descriptions.Item>
-                </Descriptions>
-            </div>
+        <div className="detailCardWrapper">
+            <Image alt="example" src={item.owner.avatar_url} />
+            <Descriptions
+                className="descriptionWrapper"
+                title="Repository info"
+                layout="vertical"
+                bordered
+            >
+                <Descriptions.Item label="User name">
+                    <a href={item.owner.html_url}>{item.owner.login}</a>
+                </Descriptions.Item>
+                <Descriptions.Item label="Repository name">
+                    <a href={item.svn_url} target="_blank" rel="noreferrer noopener">
+                        {item.name}
+                    </a>
+                </Descriptions.Item>
+                <Descriptions.Item label="Subscribers count">{item.subscribers_count}</Descriptions.Item>
+                <Descriptions.Item label="Repository description">{item.description}</Descriptions.Item>
+            </Descriptions>
+        </div>
     );
 };

@@ -8,61 +8,65 @@ import { GithubRepositoryItem } from '../modules/github/types';
 import './RepoSearchForm.css';
 import Search from 'antd/lib/input/Search';
 
-const INITIAL_PAGE_SIZE = 10;
-const MAX_PAGES_AMOUNT = 1000;
+export const INITIAL_PAGE_SIZE = 10;
+const MAX_PAGES_DISPLAYED = 1000; // the GitHub Search API provides up to 1,000 results for each search
 
 export const GithubSearchRepositories: React.FC = () => {
     const dispatch: any = useDispatch();
-    const [searchName, setSearchName] = useState('');
-    const {list, isLoading, totalRepositoriesCount} = useSelector((state: StoreState) => state.gitHubRepositories);
-    const onChangeRepositoryTitle = (e: ChangeEvent<HTMLInputElement>) => setSearchName(e.target.value);
-    const [pageSize, setPageSize] = useState<number>(INITIAL_PAGE_SIZE);
+    const {
+        list,
+        isLoading,
+        totalRepositoriesCount,
+        pagination,
+    } = useSelector((state: StoreState) => state.githubRepositories);
+    const [repositoryQuery, setRepositoryQuery] = useState('');
 
-    const totalPagesFound =  (totalRepositoriesCount <= MAX_PAGES_AMOUNT && totalRepositoriesCount);
+    const onChangeRepositoryTitle = (e: ChangeEvent<HTMLInputElement>) => setRepositoryQuery(e.target.value);
 
-    const onSearch = () => {
-        dispatch(searchGithubRepositories(searchName, pageSize));
+    const totalPagesAmount = Math.min(MAX_PAGES_DISPLAYED, totalRepositoriesCount);
+
+    const searchRepositories = (query: string, size: number, page: number) => {
+        dispatch(searchGithubRepositories(query, size, page));
     };
-    const onChangeCurrentPage = (currentPage: number) => {
-        dispatch(searchGithubRepositories(searchName, pageSize, currentPage));
+
+    const onSearch = (query: string) => {
+        searchRepositories(query, pagination.size, 1);
     };
-    const onShowPageSizeChange = (pageSize: number, currentPage: number) => {
-        setPageSize(pageSize);
-        dispatch(searchGithubRepositories(searchName, pageSize, currentPage));
+    const onPaginationChange = (page: number, size: number) => {
+        searchRepositories(repositoryQuery, size, page);
     };
 
     // TODO: Menu with Link or Navigate
     return (
-            <div className="mainContainer">
-                <Form>
-                    <h2 className="formHeaderTitle">Search Repositories</h2>
-                    <Search
-                            className="searchInput"
-                            placeholder="Enter repository name"
-                            enterButton="Search"
-                            size="large"
-                            value={searchName}
-                            loading={isLoading}
-                            onSearch={onSearch}
-                            onChange={onChangeRepositoryTitle}
-                    />
-                </Form>
-                <Spin className="loadingSpin" spinning={isLoading} size="large" tip="Loading...">
-                    <div className="itemsContainer">
-                        {list.map((item: GithubRepositoryItem) => <RepositoriesItems key={item.id} item={item} />)}
-                    </div>
-                </Spin>
-                {
-                        list.length &&
-                        <Pagination
-                                className="paginationBar"
-                                showSizeChanger
-                                onShowSizeChange={onChangeCurrentPage}
-                                pageSizeOptions={['5', '10', '25']}
-                                total={totalPagesFound || MAX_PAGES_AMOUNT}
-                                onChange={onShowPageSizeChange}
-                        />
-                }
-            </div>
+        <div className="mainContainer">
+            <Form>
+                <h2 className="formHeaderTitle">Search Repositories</h2>
+                <Search
+                    className="searchInput"
+                    placeholder="Enter repository name"
+                    enterButton="Search"
+                    size="large"
+                    value={repositoryQuery}
+                    loading={isLoading}
+                    onSearch={onSearch}
+                    onChange={onChangeRepositoryTitle}
+                />
+            </Form>
+            <Spin className="loadingSpin" spinning={isLoading} size="large" tip="Loading...">
+                <div className="itemsContainer">
+                    {list.map((item: GithubRepositoryItem) => <RepositoriesItems key={item.id} item={item} />)}
+                </div>
+            </Spin>
+            {
+                !!list.length &&
+                <Pagination
+                    className="paginationBar"
+                    showSizeChanger
+                    pageSizeOptions={['5', '10', '25']}
+                    total={totalPagesAmount || MAX_PAGES_DISPLAYED}
+                    onChange={onPaginationChange}
+                />
+            }
+        </div>
     );
 };

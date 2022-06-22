@@ -8,7 +8,7 @@ export interface RepositoryItemProps {
 }
 
 export const RepositoriesItems: React.FC<RepositoryItemProps> = ({ item }) => {
-    const {Meta} = Card;
+    const { Meta } = Card;
     const description = item.description ? item.description.substring(0, 125) : '';
     const navigate = useNavigate();
     const handleOnClick = () => navigate(`/github/${item.owner.login}+${item.name}`);

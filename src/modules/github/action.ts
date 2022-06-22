@@ -11,11 +11,13 @@ export const searchGithubRepositories = (name: string, size: number, page = 1) =
     });
 
     try {
-        const list = await searchRepositories(name, size, page);
+        const response = await searchRepositories(name, size, page);
         dispatch({
             type: SEARCH_GITHUB_REPOSITORIES_SUCCESS,
-            payload: list,
-            pagination: size, page
+            payload: {
+                response,
+                pagination: { size, page },
+            },
         });
     }
     catch(error) {
