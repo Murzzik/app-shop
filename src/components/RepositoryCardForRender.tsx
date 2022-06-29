@@ -2,20 +2,19 @@ import React from 'react';
 import { Descriptions, Image } from 'antd';
 import { GithubRepositoryItem } from '../modules/github/types';
 
-interface RepositoryCardProps {
+interface IRepositoryCardForRenderProps {
     item: GithubRepositoryItem;
 }
 
-export const RepositoryCard: React.FC<RepositoryCardProps> = ({ item }) => {
-
+export const RepositoryCardForRender = (props: IRepositoryCardForRenderProps) => {
+    const { item } = props;
     return (
         <div className="detailCardWrapper">
             <Image alt="example" src={item.owner.avatar_url} />
-            <Descriptions
-                className="descriptionWrapper"
-                title="Repository info"
-                layout="vertical"
-                bordered
+            <Descriptions className="descriptionWrapper"
+                          title="Repository info"
+                          layout="vertical"
+                          bordered
             >
                 <Descriptions.Item label="User name">
                     <a href={item.owner.html_url}>{item.owner.login}</a>

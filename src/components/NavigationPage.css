@@ -1,0 +1,73 @@
+@import url(https://fonts.googleapis.com/css?family=Fjalla+One);
+
+.navContainer {
+    font-family: 'Fjalla One', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navContainer h2 {
+    transform: rotateZ(-10deg);
+    color: #e55643;
+    font-size: 44px;
+    margin-top: 20vh;
+    border-bottom: 1px solid #533d4a;
+    border-top: 1px solid #533d4a;
+    text-shadow: #533d4a 1px 1px,
+    #533d4a 2px 2px,
+    #533d4a 3px 3px,
+    #533d4a 4px 4px,
+    #533d4a 5px 5px,
+    #533d4a 6px 6px;
+}
+
+.navContainer h3 {
+    transform: rotateZ(-10deg);
+    color: #2b9f5e;
+    font-size: 40px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #533d4a;
+    border-top: 1px solid #533d4a;
+    text-shadow: #533d4a 1px 1px,
+    #533d4a 2px 2px,
+    #533d4a 3px 3px,
+    #533d4a 4px 4px,
+    #533d4a 5px 5px,
+    #533d4a 6px 6px;
+}
+
+.navContainer a {
+    text-decoration: none;
+}
+
+.btn {
+    transform: rotateZ(-10deg);
+    background: none;
+    border: none;
+    color: #656f6f;
+    margin: 5px;
+    font-size: 32px;
+    cursor: pointer;
+    transition: 1s;
+
+}
+
+.btn a {
+    color: #656f6f;
+    -webkit-transition: color 1s;
+    -moz-transition: color 1s;
+    -ms-transition: color 1s;
+    -o-transition: color 1s;
+    transition: color 1s;
+    text-shadow: #533d4a 1px 1px,
+    #533d4a 2px 2px,
+    #533d4a 3px 3px,
+    #533d4a 4px 4px,
+    #533d4a 5px 5px,
+    #533d4a 6px 6px;
+}
+
+.btn a:hover {
+    color: #f1c83c;
+}

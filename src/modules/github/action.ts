@@ -5,18 +5,22 @@ export const SEARCH_GITHUB_REPOSITORIES_REQUEST = 'SEARCH_GITHUB_REPOSITORIES_RE
 export const SEARCH_GITHUB_REPOSITORIES_SUCCESS = 'SEARCH_GITHUB_REPOSITORIES_SUCCESS';
 export const SEARCH_GITHUB_REPOSITORIES_ERROR = 'SEARCH_GITHUB_REPOSITORIES_ERROR';
 
-export const searchGithubRepositories = (name: string) => async (dispatch: Dispatch) => {
+export const searchGithubRepositories = (name: string, size: number, page = 1) => async (dispatch: Dispatch) => {
     dispatch({
         type: SEARCH_GITHUB_REPOSITORIES_REQUEST,
     });
 
     try {
-        const list = await searchRepositories(name);
+        const response = await searchRepositories(name, size, page);
         dispatch({
             type: SEARCH_GITHUB_REPOSITORIES_SUCCESS,
-            payload: list,
+            payload: {
+                response,
+                pagination: { size, page },
+            },
         });
-    } catch (error) {
+    }
+    catch(error) {
         dispatch({
             type: SEARCH_GITHUB_REPOSITORIES_ERROR,
             payload: error,

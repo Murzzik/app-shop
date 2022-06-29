@@ -8,12 +8,14 @@ interface PostListProps {
 
 export const PostList: React.FC<PostListProps> = ({ list }) => (
     <Row>
-        {list.map(post => (
+        {
+            list.map(post => (
             <Col key={post.id} span={6}>
                 <Card title={post.title} size="small">
                     <span>{post.body}</span>
                 </Card>
             </Col>
-        ))}
+        ))
+        }
     </Row>
 );

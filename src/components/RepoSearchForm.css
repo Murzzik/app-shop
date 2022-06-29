@@ -4,6 +4,10 @@
     flex-direction: column;
 }
 
+.loadingSpin {
+    margin-top: 30px;
+}
+
 .formHeaderTitle {
     text-align: center;
     font-weight: 700;
@@ -46,4 +50,10 @@
     overflow: initial;
     height: 480px;
     z-index: 1000;
+}
+
+.paginationBar {
+    display: flex;
+    justify-content: center;
+    margin: 110px 0 20px 0;
 }
