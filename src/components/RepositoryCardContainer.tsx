@@ -19,10 +19,6 @@ export const RepositoryCardContainer: React.FC = () => {
         }
     }, [item, owner, repositoryName]);
 
-    return (
-        <>
-            {item && <RepositoryCard item={item} />}
-        </>
-    );
+    return item && <RepositoryCard item={item} />
 };
 
